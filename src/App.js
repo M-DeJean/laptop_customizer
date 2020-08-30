@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Features from './Features'
 import Summary from './Summary'
-
+import Total from './Total'
 // This object will allow us to
 // easily convert numbers into US dollar values
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
@@ -92,10 +92,10 @@ class App extends Component {
     //   );
     // });
 
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
+    // const total = Object.keys(this.state.selected).reduce(
+    //   (acc, curr) => acc + this.state.selected[curr].cost,
+    //   0
+    // );
 
     return (
       <div className="App">
@@ -129,10 +129,13 @@ class App extends Component {
                 /> 
               ))}
             <div className="summary__total">
-              <div className="summary__total__label">Total</div>
+              {/* <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
+                {USCurrencyFormat.format(total)} */}
+                <Total
+                  USCurrencyFormat={USCurrencyFormat}
+                  selected={this.state.selected}
+                 />
             </div>
           </section>
         </main>
