@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Features from './Features'
+import Summary from './Summary'
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -76,20 +77,20 @@ class App extends Component {
     //   );
     // });
 
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
+    // const summary = Object.keys(this.state.selected).map((feature, idx) => {
+    //   const featureHash = feature + '-' + idx;
+    //   const selectedOption = this.state.selected[feature];
 
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
+    //   return (
+    //     <div className="summary__option" key={featureHash}>
+    //       <div className="summary__option__label">{feature} </div>
+    //       <div className="summary__option__value">{selectedOption.name}</div>
+    //       <div className="summary__option__cost">
+    //         {USCurrencyFormat.format(selectedOption.cost)}
+    //       </div>
+    //     </div>
+    //   );
+    // });
 
     const total = Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
@@ -112,12 +113,21 @@ class App extends Component {
                 key={idx}
                 state={this.state}
                 updateFeature={this.updateFeature}
+                USCurrencyFormat={USCurrencyFormat}
               />
             ))}
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
-            {summary}
+              {Object.keys(this.state.selected).map((feature, idx) =>(
+               <Summary
+                featureHash={feature + '-' + idx}
+                selectedOption={this.state.selected[feature]}
+                key={feature + '_' + idx}
+                feature={feature}
+                USCurrencyFormat={USCurrencyFormat}
+                /> 
+              ))}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">

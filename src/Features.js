@@ -16,6 +16,7 @@ export default function Features(props) {
                     state={props.state}
                     updateFeature={props.updateFeature}
                     feature={props.feature}
+                    USCurrencyFormat={props.USCurrencyFormat}
                 />
             ))}
         </fieldset>
