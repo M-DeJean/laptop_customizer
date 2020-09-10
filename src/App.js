@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 
 import './App.css';
 import MainForm from './Components/MainForm'
-import Features from './Components/Features'
-import Summary from './Components/Summary'
-import Total from './Components/Total'
+import MainSummary from './Components/MainSummary'
+import Header from './Components/Header'
+
 // This object will allow us to
 // easily convert numbers into US dollar values
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
@@ -46,51 +46,21 @@ class App extends Component {
   };
 
   render() {
-    const { features } = this.props;
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
+          <Header />
         <main>
           <MainForm
             selected={this.state.selected}
             state={this.state}
             updateFeature={this.updateFeature}
+            USCurrencyFormat={USCurrencyFormat}
           />
-          {/* <form className="main__form">
-            <h2>Customize your laptop</h2>
-            {Object.keys(this.state.selected).map((feature, idx) => (
-              <Features
-                features={features}
-                featureHash={feature + '-' + idx}
-                feature={feature}
-                key={idx}
-                state={this.state}
-                updateFeature={this.updateFeature}
-                USCurrencyFormat={USCurrencyFormat}
-              />
-            ))}
-          </form> */}
-          <section className="main__summary">
-            <h2>Your cart</h2>
-              {Object.keys(this.state.selected).map((feature, idx) =>(
-               <Summary
-                featureHash={feature + '-' + idx}
-                selectedOption={this.state.selected[feature]}
-                key={feature + '_' + idx}
-                feature={feature}
-                USCurrencyFormat={USCurrencyFormat}
-                /> 
-              ))}
-            <div className="summary__total">
-                <Total
-                  USCurrencyFormat={USCurrencyFormat}
-                  selected={this.state.selected}
-                 />
-            </div>
-          </section>
+          <MainSummary
+            selected={this.state.selected}
+            USCurrencyFormat={USCurrencyFormat}
+          />
         </main>
       </div>
     );

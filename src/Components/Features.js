@@ -1,7 +1,7 @@
 import React from 'react';
 import slugify from 'slugify';
 import Options from './Options'
-
+import FEATURES from '../STORE'
 
 export default function Features(props) {
     return (
@@ -9,8 +9,9 @@ export default function Features(props) {
             <legend className="feature__name">
                 <h3>{props.feature}</h3>
             </legend>
-            {props.features[props.feature].map(item => (
+            {FEATURES[props.feature].map((item, i) => (
                 <Options
+                    key={i}
                     itemHash={slugify(JSON.stringify(item))}
                     item={item}
                     state={props.state}

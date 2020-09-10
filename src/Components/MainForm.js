@@ -1,6 +1,5 @@
 import React from 'react';
 import Features from './Features'
-import FEATURES from '../STORE'
 
 export default function MainForm(props) {
 
@@ -9,12 +8,12 @@ export default function MainForm(props) {
             <h2>Customize your laptop</h2>
             {Object.keys(props.selected).map((feature, idx) => (
                 <Features
-                    features={FEATURES}
                     featureHash={feature + '-' + idx}
                     feature={feature}
                     key={idx}
                     state={props.state}
                     updateFeature={props.updateFeature}
+                    USCurrencyFormat={props.USCurrencyFormat}
                 />
             ))}
         </form>
