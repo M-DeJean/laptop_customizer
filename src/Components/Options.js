@@ -1,6 +1,11 @@
 import React from 'react'
 import slugify from 'slugify';
 
+const USCurrencyFormat = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
 
 export default function Options(props) {
     return (
@@ -14,7 +19,7 @@ export default function Options(props) {
                 onChange={e => props.updateFeature(props.feature, props.item)}
             />
             <label htmlFor={props.itemHash} className="feature__label">
-                {props.item.name} ({props.USCurrencyFormat.format(props.item.cost)})
+                {props.item.name} ({USCurrencyFormat.format(props.item.cost)})
           </label>
         </div>
     );

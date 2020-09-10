@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // in both URLs and html attributes
 
 import './App.css';
+import MainForm from './Components/MainForm'
 import Features from './Components/Features'
 import Summary from './Components/Summary'
 import Total from './Components/Total'
@@ -53,7 +54,12 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <form className="main__form">
+          <MainForm
+            selected={this.state.selected}
+            state={this.state}
+            updateFeature={this.updateFeature}
+          />
+          {/* <form className="main__form">
             <h2>Customize your laptop</h2>
             {Object.keys(this.state.selected).map((feature, idx) => (
               <Features
@@ -66,7 +72,7 @@ class App extends Component {
                 USCurrencyFormat={USCurrencyFormat}
               />
             ))}
-          </form>
+          </form> */}
           <section className="main__summary">
             <h2>Your cart</h2>
               {Object.keys(this.state.selected).map((feature, idx) =>(
